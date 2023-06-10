@@ -26,10 +26,9 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Test # Prevent deploying packages of part modules
+      - name: Test # Prevent failures when partial modules are deployed
         run: mvn test
       - name: Publish to GitHub Packages Apache Maven
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          mvn deploy -DskipTests=true -Drepo=${{ inputs.repo }}
+        run: mvn deploy -DskipTests=true -Drepo=${{ inputs.repo }} -P release
