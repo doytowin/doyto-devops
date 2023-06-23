@@ -21,4 +21,4 @@ jobs:
           java-version: 8
           distribution: 'adopt'
       - name: Check Javadoc
-        run: run javadoc:javadoc
+        run: mvn run javadoc:javadoc
