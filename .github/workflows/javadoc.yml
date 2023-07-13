@@ -16,4 +16,4 @@ jobs:
           distribution: 'adopt'
           cache: 'maven'
       - name: Check Javadoc
-        run: mvn javadoc:javadoc
+        run: mvn compile javadoc:javadoc
