@@ -45,7 +45,7 @@ jobs:
           -Dlombok.addOutputDirectory=false \
           -DsourceDirectory=target/delombok \
           -DskipTests=true \
-          release:prepare release:perform
+          release:prepare release:perform -DtagNameFormat=v@{version} 
 
       - name: Rollback on failure
         if: failure()
