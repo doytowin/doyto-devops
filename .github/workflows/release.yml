@@ -12,7 +12,7 @@ jobs:
       - name: Configure Git User
         run: |
           git config user.email ${{ vars.GH_EMAIL }}
-          git config user.name ${{ vars.GH_USERNAME }}
+          git config user.name "${{ vars.GH_USERNAME }}"
           git config user.signingkey ${{ vars.GPG_KEY_ID }}
           git config gpg.program gpg 
           git config commit.gpgsign true
