@@ -44,7 +44,7 @@ jobs:
           -Dlombok.outputDirectory=target/delombok \
           -Dlombok.addOutputDirectory=false \
           -DsourceDirectory=target/delombok \
-          -DskipTests=true \
+          -DargLine=-DskipTests \
           release:prepare release:perform -DtagNameFormat=v@{version} 
 
       - name: Rollback on failure
