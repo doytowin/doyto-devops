@@ -42,6 +42,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mvn -B test
-          mvn -B sonar:sonar \
+          mvn -B jacoco:report sonar:sonar \
           -Dsonar.projectName=${{ inputs.sonar-project-name }} \
           -Dsonar.projectKey=${{ inputs.sonar-project-key }} 
