@@ -37,15 +37,7 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mvn -B clean \
-          org.projectlombok:lombok-maven-plugin:1.18.20.0:delombok \
-          -Dlombok.sourceDirectory=src/main/java \
-          -Dlombok.outputDirectory=target/delombok \
-          -Dlombok.addOutputDirectory=false \
-          -DsourceDirectory=target/delombok \
-          -DargLine=-DskipTests \
-          release:prepare release:perform -DtagNameFormat=v@{version} 
+        run: mvn -B release:prepare release:perform
 
       - name: Rollback on failure
         if: failure()
