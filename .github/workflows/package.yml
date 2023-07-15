@@ -30,4 +30,4 @@ jobs:
           GPG_TTY: $(tty)
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           GITHUB_TOKEN: ${{ github.token }}
-        run: mvn deploy -DskipTests=true -Drepo=${{ inputs.repo }} -P release
+        run: mvn -B deploy -DskipTests=true -Drepo=${{ inputs.repo }} -P github-package
