@@ -34,7 +34,7 @@ jobs:
           path: ~/.embedmongo
           key: ${{ runner.os }}-mongo
           restore-keys: ${{ runner.os }}-mongo
-      - name: Set up JDK 11
+      - name: Setup JDK ${{ inputs.java-version }}
         uses: actions/setup-java@v3
         with:
           java-version: ${{ inputs.java-version }}
