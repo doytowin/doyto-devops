@@ -19,7 +19,7 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
-      - name: Setup JDK 8
+      - name: Setup JDK ${{ inputs.java-version }}
         uses: actions/setup-java@v3
         with:
           java-version: ${{ inputs.java-version }}
