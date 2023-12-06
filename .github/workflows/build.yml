@@ -34,10 +34,10 @@ jobs:
           path: ~/.embedmongo
           key: ${{ runner.os }}-mongo
           restore-keys: ${{ runner.os }}-mongo
-      - name: Setup JDK ${{ inputs.java-version }}
+      - name: Setup JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: ${{ inputs.java-version }}
+          java-version: 17
           distribution: 'adopt'
           cache: 'maven'
       - name: Build and Analyze
