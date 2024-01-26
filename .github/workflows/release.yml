@@ -39,7 +39,6 @@ jobs:
           GPG_TTY: $(tty)
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
-          cat ~/.zshrc
           cat ~/.bashrc
           cat ~/.bash_profile
           tty  
