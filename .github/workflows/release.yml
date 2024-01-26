@@ -40,8 +40,9 @@ jobs:
           GPG_TTY: $(tty)
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
-          tty
-          gpg --list-secret-keys
+          cat ~/.gnupg/gpg-agent.conf
+          which pinentry
+          which pinentry-tty
           echo "test" | gpg --clearsign
 
       - name: Deploy to Nexus
