@@ -39,8 +39,8 @@ jobs:
           GPG_TTY: $(tty)
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
-          which pinentry-tty
           which pinentry
+          which pinentry-tty
           echo "test" | gpg --clearsign
 
       - name: Deploy to Nexus
