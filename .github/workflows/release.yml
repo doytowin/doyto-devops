@@ -40,7 +40,8 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
           echo $GPG_TTY
-          tty  
+          which tty
+          tty
           echo "test" | gpg --clearsign
 
       - name: Deploy to Nexus
