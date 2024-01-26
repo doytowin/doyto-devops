@@ -44,7 +44,7 @@ jobs:
           echo 'allow-loopback-pinentry' >> ~/.gnupg/gpg-agent.conf
           echo 'pinentry-program /usr/bin/pinentry-curses' >> ~/.gnupg/gpg-agent.conf
           gpgconf --kill gpg-agent
-          echo "test" | gpg --clearsign
+          echo "test" | gpg --clearsign --batch
 
       - name: Deploy to Nexus
         env:
