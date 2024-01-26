@@ -19,7 +19,7 @@ jobs:
           git config user.email ${{ vars.GH_EMAIL }}
           git config user.name "${{ vars.GH_USERNAME }}"
           git config user.signingkey ${{ vars.GPG_KEY_ID }}
-          git config gpg.program $(which gpg) 
+          git config gpg.program gpg 
           git config commit.gpgsign true
 
       - name: Set up JDK ${{ inputs.java-version }}
@@ -41,8 +41,8 @@ jobs:
         run: |
           echo $GPG_TTY
           which tty
+          ls /dev
           /usr/bin/tty
-          tty
           echo "test" | gpg --clearsign
 
       - name: Deploy to Nexus
