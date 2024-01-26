@@ -12,6 +12,15 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - name: Test tty
+        shell: 'script -q -e -c "bash {0}"'
+        env:
+          GPG_TTY: $(tty)
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          tty
+          echo "test" | gpg --clearsign
+
       - uses: actions/checkout@v4
 
       - name: Configure Git User
@@ -33,15 +42,6 @@ jobs:
           server-password: OSSRH_PASSWORD # env variable for token in deploy
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Value of the GPG private key to import
           gpg-passphrase: GPG_PASSPHRASE # env variable for GPG private key passphrase
-
-      - name: Test tty
-        shell: 'script -q -e -c "bash {0}"'
-        env:
-          GPG_TTY: $(tty)
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-        run: |
-          tty
-          echo "test" | gpg --clearsign
 
       - name: Deploy to Nexus
         env:
