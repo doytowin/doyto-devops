@@ -39,6 +39,8 @@ jobs:
           GPG_TTY: $(tty)
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
+          echo 'use-agent' >> ~/.gnupg/gpg.conf
+          cat ~/.gnupg/gpg.conf
           echo 'allow-loopback-pinentry' >> ~/.gnupg/gpg-agent.conf
           echo 'pinentry-program /usr/bin/pinentry-curses' >> ~/.gnupg/gpg-agent.conf
           gpgconf --kill gpg-agent
