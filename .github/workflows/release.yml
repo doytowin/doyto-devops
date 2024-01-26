@@ -41,6 +41,7 @@ jobs:
         run: |
           echo $GPG_TTY
           which tty
+          /usr/bin/tty
           tty
           echo "test" | gpg --clearsign
 
