@@ -35,7 +35,7 @@ jobs:
           gpg-passphrase: GPG_PASSPHRASE # env variable for GPG private key passphrase
 
       - name: Export tty
-        run: export GPG_TTY=`tty`
+        run: echo $GPG_TTY
 
       - name: Test tty
         env:
