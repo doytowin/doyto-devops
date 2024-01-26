@@ -35,14 +35,12 @@ jobs:
           gpg-passphrase: GPG_PASSPHRASE # env variable for GPG private key passphrase
 
       - name: Test tty
-        shell: 'script -q -e -c "bash {0}"'
         env:
           GPG_TTY: $(tty)
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
-          cat ~/.gnupg/gpg-agent.conf
-          which pinentry
           which pinentry-tty
+          which pinentry
           echo "test" | gpg --clearsign
 
       - name: Deploy to Nexus
