@@ -35,6 +35,9 @@ jobs:
           gpg-passphrase: GPG_PASSPHRASE # env variable for GPG private key passphrase
 
       - name: Test tty
+        env:
+          GPG_TTY: $(tty)
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: echo "test" | gpg --clearsign
 
       - name: Deploy to Nexus
