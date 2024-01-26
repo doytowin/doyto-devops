@@ -19,7 +19,7 @@ jobs:
           git config user.email ${{ vars.GH_EMAIL }}
           git config user.name "${{ vars.GH_USERNAME }}"
           git config user.signingkey ${{ vars.GPG_KEY_ID }}
-          git config gpg.program gpg 
+          git config gpg.program $(which gpg) 
           git config commit.gpgsign true
 
       - name: Set up JDK ${{ inputs.java-version }}
@@ -42,6 +42,7 @@ jobs:
 
       - name: Deploy to Nexus
         env:
+          GPG_TTY: $(tty)
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
