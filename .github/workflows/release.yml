@@ -10,7 +10,7 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v4
 
@@ -39,8 +39,6 @@ jobs:
           GPG_TTY: $(tty)
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
-          cat ~/.bashrc
-          cat ~/.bash_profile
           tty  
           echo "test" | gpg --clearsign
 
