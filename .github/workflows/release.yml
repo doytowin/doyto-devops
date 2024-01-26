@@ -39,7 +39,7 @@ jobs:
           GPG_TTY: $(tty)
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
-          echo "test" | gpg --clearsign --pinentry-mode=loopback --no-tty
+          echo "test" | gpg --clearsign --pinentry-mode=loopback --batch
 
       - name: Deploy to Nexus
         env:
