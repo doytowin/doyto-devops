@@ -38,7 +38,7 @@ jobs:
         env:
           GPG_TTY: $(tty)
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-        run: echo "test" | gpg --clearsign
+        run: tty && echo "test" | gpg --clearsign
 
       - name: Deploy to Nexus
         env:
