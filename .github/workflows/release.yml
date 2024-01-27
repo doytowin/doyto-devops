@@ -41,8 +41,7 @@ jobs:
           echo 'use-agent' >> ~/.gnupg/gpg.conf
           echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
           echo 'allow-loopback-pinentry' >> ~/.gnupg/gpg-agent.conf
-          killall gpg-agent
-          export GPG_TTY=`tty`
+          echo "RELOADAGENT" | gpg-connect-agent
           echo "test" | gpg --clearsign
 
       - name: Deploy to Nexus
