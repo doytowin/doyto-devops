@@ -40,9 +40,9 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
           echo 'use-agent' >> ~/.gnupg/gpg.conf
+          echo 'no-tty' >> ~/.gnupg/gpg.conf
           echo 'allow-loopback-pinentry' >> ~/.gnupg/gpg-agent.conf
           gpgconf --reload gpg-agent
-          export GPG_TTY=`tty`
           echo "test" | gpg --clearsign --pinentry-mode=loopback
 
       - name: Deploy to Nexus
