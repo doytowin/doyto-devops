@@ -34,6 +34,16 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Value of the GPG private key to import
           gpg-passphrase: GPG_PASSPHRASE # env variable for GPG private key passphrase
 
+      - name: Test tty
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          echo 'use-agent' >> ~/.gnupg/gpg.conf
+          echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
+          echo 'allow-loopback-pinentry' >> ~/.gnupg/gpg-agent.conf
+          gpgconf --reload gpg-agent
+          echo "test" | gpg --clearsign
+
       - name: Deploy to Nexus
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
