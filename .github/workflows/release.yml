@@ -20,7 +20,7 @@ jobs:
           git config user.name "${{ vars.GH_USERNAME }}"
           git config user.signingkey ${{ vars.GPG_KEY_ID }}
           git config gpg.program gpg 
-          git config commit.gpgsign true
+          git config commit.gpgsign false
 
       - name: Set up JDK ${{ inputs.java-version }}
         uses: actions/setup-java@v4
@@ -33,17 +33,6 @@ jobs:
           server-password: OSSRH_PASSWORD # env variable for token in deploy
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Value of the GPG private key to import
           gpg-passphrase: GPG_PASSPHRASE # env variable for GPG private key passphrase
-
-      - name: Test tty
-        env:
-          GPG_TTY: $(tty)
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-        run: |
-          echo 'use-agent' >> ~/.gnupg/gpg.conf
-          echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
-          echo 'allow-loopback-pinentry' >> ~/.gnupg/gpg-agent.conf
-          echo "RELOADAGENT" | gpg-connect-agent
-          echo "test" | gpg --clearsign
 
       - name: Deploy to Nexus
         env:
