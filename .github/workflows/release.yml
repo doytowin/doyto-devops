@@ -36,13 +36,13 @@ jobs:
 
       - name: Test tty
         env:
-          GPG_TTY: $(tty)
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
           echo 'use-agent' >> ~/.gnupg/gpg.conf
           echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
           echo 'allow-loopback-pinentry' >> ~/.gnupg/gpg-agent.conf
           killall gpg-agent
+          export GPG_TTY=`tty`
           echo "test" | gpg --clearsign
 
       - name: Deploy to Nexus
