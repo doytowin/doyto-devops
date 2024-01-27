@@ -20,7 +20,7 @@ jobs:
           git config user.name "${{ vars.GH_USERNAME }}"
           git config user.signingkey ${{ vars.GPG_KEY_ID }}
           git config gpg.program gpg 
-          git config commit.gpgsign false
+          git config commit.gpgsign true
 
       - name: Set up JDK ${{ inputs.java-version }}
         uses: actions/setup-java@v4
