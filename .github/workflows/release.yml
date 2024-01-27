@@ -40,10 +40,7 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
           echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
-          cat ~/.gnupg/gpg.conf
-          cat /home/runner/.gnupg/gpg.conf
-          cat /home/runner/.m2/settings.xml
-          echo "test" | gpg --clearsign
+          echo "test" | gpg --pinentry-mode loopback --clearsign
 
       - name: Deploy to Nexus
         env:
