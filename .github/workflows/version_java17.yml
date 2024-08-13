@@ -1,0 +1,24 @@
+name: Version
+
+on:
+  workflow_call:
+    outputs:
+      java:
+        description: "The Java version"
+        value: ${{ jobs.version.outputs.java }}
+
+jobs:
+  version:
+    name: Determine Java version
+    runs-on: ubuntu-latest
+    env:
+      VERSION: 17
+    outputs:
+      java: ${{ steps.version.outputs.java }}
+    steps:
+      - name: Switch Java version
+        if: startsWith(github.ref, 'refs/heads/java8/') || endsWith(github.ref, '/v')
+        run: echo "VERSION=8" >> $GITHUB_ENV
+      - id: version
+        name: Write Java version
+        run: echo "java=$VERSION" >> "$GITHUB_OUTPUT"
